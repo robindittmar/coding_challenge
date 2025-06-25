@@ -3,6 +3,33 @@
 This repository contains my progress and results of the
 coding challenge, which is part of the Greenbone application process.
 
+## Answering the questions
+
+##### Can you figure out what is wrong with your decoder?
+
+Yes! The decoder is either ignoring the `"isEncoded"` flag, or missing the **ROT13**
+decoding step altogether. Technically, is it also only iterating over the first
+five messages :)
+
+
+##### How do you prove it?
+
+The first piece of proof is comparing the outputted text with the contents of the
+`messages.json` file. The first five entries of the `[messages][i][message]` object
+are identical to the outputted text.
+
+The second piece of proof is running the ROT13 cipher on the outputted text, either
+manually or utilizing tools like [rot13.com](https://rot13.com/)
+
+The output of deciphering the encoded text is perfectly readable
+(as long as you know English, of course)
+
+
+##### Can you write a program that reads the encoded messages in the JSON file, decodes and print them to stdout?
+
+Yes, please find my source code and thought process in this repository :)
+
+
 ### Prerequisites
 
 To build this project, [gvm-libs](https://github.com/greenbone/gvm-libs) must be installed.
@@ -53,3 +80,28 @@ My idea currently is to
 4. Decode messages that have `"isEncoded": true` using a custom ROT13 encoder
 (no explicit decoder necessary, as ROT13 is "symmetrical", just like XORing for example: if you run the operation twice you'll receive back your original input)
 5. Iterate over message objects and output decoded messages
+
+#### 2025-06-26
+I managed to understand the usage of the `jsonpull` util from `gvm-libs` and also managed to
+get a running example of the exercise.
+I have also decided to answer the questions asked in the document, for completeness’s sake. (Even though I believe the
+coding part is way more interesting for both parties)
+
+Later I have started cleaning up the code, splitting it into meaningful units and started documenting the functions.
+
+I am planning to clean the code up a lot more, but I would like to point out two things I am uncertain about at this
+time:
+
+##### Should the messages be decoded while parsing the JSON, or should it be an extra step?
+
+- My reasoning is just separating concerns. It would be nice to have a main function that
+reads something like
+  1. parse_json()
+  2. process_messages()
+  3. print_messages()
+
+##### Should I abstract the message list further, or use GList* directly?
+
+- This is my first time utilizing `glib`, and I am not sure if I should use `GList*` directly.
+There is an argument to be made, that creating a small abstraction layer on top would look nicer,
+but using GList directly is not really verbose by itself.
