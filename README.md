@@ -14,7 +14,7 @@ five messages :)
 
 ##### How do you prove it?
 
-The first piece of proof is comparing the outputted text with the contents of the
+The first piece of proof is comparing the output of the program with the contents of the
 `messages.json` file. The first five entries of the `[messages][i][message]` object
 are identical to the outputted text.
 
