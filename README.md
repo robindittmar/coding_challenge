@@ -12,7 +12,7 @@ To build this project, [gvm-libs](https://github.com/greenbone/gvm-libs) must be
 I developed this on Linux Mint 22.1 Cinnamon, using the kernel `6.8.0-62-generic`
 along with
 - `CLion 2025.1.3`
-- `cc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0`
+- `gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0`
 - `cmake 3.31.6`
 
 
