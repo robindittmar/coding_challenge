@@ -14,9 +14,9 @@ five messages :)
 
 ##### How do you prove it?
 
-The first piece of proof is comparing the output of the program with the contents of the
-`messages.json` file. The first five entries of the `[messages][i][message]` object
-are identical to the outputted text.
+The first piece of proof is comparing the output of the program with the contents of
+`messages.json`. The first five entries of the `[messages][i][message]` object
+are identical to the output.
 
 The second piece of proof is running the ROT13 cipher on the outputted text, either
 manually or utilizing tools like [rot13.com](https://rot13.com/)
@@ -32,7 +32,7 @@ Yes, please find my source code and thought process in this repository :)
 
 ### Prerequisites
 
-To build this project, [gvm-libs](https://github.com/greenbone/gvm-libs) must be installed.
+To build this project, `glib`, `cJSON` and [gvm-libs](https://github.com/greenbone/gvm-libs) must be installed.
 
 #### System information
 
