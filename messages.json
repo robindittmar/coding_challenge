@@ -1,0 +1,309 @@
+{
+    "description": "This file contains an array of encoded sci-fi barbecue-themed messages.",
+    "createdAt": "2023-10-05",
+    "version": "1.0",
+    "category": "Sci-Fi Barbecue Messages",
+    "language": "English",
+    "messages": [
+        {
+            "id": 1,
+            "timestamp": "2023-10-05T08:00:00Z",
+            "isEncoded": false,
+            "message": "When will you be back in Greenbonia?"
+        },
+        {
+            "id": 2,
+            "timestamp": "2023-10-05T09:00:00Z",
+            "isEncoded": false,
+            "message": "It's 0.163 ly at Warp 4, so approx. 14 hrs."
+        },
+        {
+            "id": 3,
+            "timestamp": "2023-10-05T10:00:00Z",
+            "isEncoded": true,
+            "message": "Gura lbh'yy or ba gvzr sbe bhe grnz oneorphr!"
+        },
+        {
+            "id": 4,
+            "timestamp": "2023-10-05T11:00:00Z",
+            "isEncoded": true,
+            "message": "Jura qbrf vg fgneg naq funyy V oevat fbzrguvat?"
+        },
+        {
+            "id": 5,
+            "timestamp": "2023-10-05T12:00:00Z",
+            "isEncoded": true,
+            "message": "Qba'g sbetrg gur oernq sbe gur cnegl."
+        },
+        {
+            "id": 6,
+            "timestamp": "2023-10-05T13:00:00Z",
+            "isEncoded": true,
+            "message": "Bs pbhefr, V'yy cvpx hc fbzr serfu ybnirf sebz gur ercyvpngbe."
+        },
+        {
+            "id": 7,
+            "timestamp": "2023-10-05T14:00:00Z",
+            "isEncoded": true,
+            "message": "Vf gurer nalguvat ryfr jr arrq sbe gur tevyy?"
+        },
+        {
+            "id": 8,
+            "timestamp": "2023-10-05T15:00:00Z",
+            "isEncoded": true,
+            "message": "Whfg lbhe nccrgvgr naq znlor fbzr bs gung Terraobavna ubg fnhpr!"
+        },
+        {
+            "id": 9,
+            "timestamp": "2023-10-05T16:00:00Z",
+            "isEncoded": true,
+            "message": "V'yy znxr fher gb oevat na rkgen obggyr, frr lbh fbba!"
+        },
+        {
+            "id": 10,
+            "timestamp": "2023-10-05T17:00:00Z",
+            "isEncoded": true,
+            "message": "Ybbxvat sbejneq gb vg! "
+        },
+        {
+            "id": 11,
+            "timestamp": "2023-10-05T18:00:00Z",
+            "isEncoded": true,
+            "message": "Jvyy gur jubyr perj or gurer guvf gvzr? "
+        },
+        {
+            "id": 12,
+            "timestamp": "2023-10-05T19:00:00Z",
+            "isEncoded": true,
+            "message": "Lrf, rira Pncgnva Yven pbasvezrq."
+        },
+        {
+            "id": 13,
+            "timestamp": "2023-10-05T20:00:00Z",
+            "isEncoded": true,
+            "message": "Gung'f ener, fubhyq jr cercner n fcrrpu?"
+        },
+        {
+            "id": 14,
+            "timestamp": "2023-10-05T21:00:00Z",
+            "isEncoded": true,
+            "message": "Znlor whfg n gbnfg gb fnsr geniryf. "
+        },
+        {
+            "id": 15,
+            "timestamp": "2023-10-05T22:00:00Z",
+            "isEncoded": true,
+            "message": "Tbbq vqrn, V'yy qensg fbzrguvat ba gur jnl."
+        },
+        {
+            "id": 16,
+            "timestamp": "2023-10-05T23:00:00Z",
+            "isEncoded": true,
+            "message": "Qba'g sbetrg gb zragvba gur arj erpehvgf. "
+        },
+        {
+            "id": 17,
+            "timestamp": "2023-10-06T00:00:00Z",
+            "isEncoded": true,
+            "message": "Nofbyhgryl, gurl'ir rnearq n jnez jrypbzr."
+        },
+        {
+            "id": 18,
+            "timestamp": "2023-10-06T01:00:00Z",
+            "isEncoded": true,
+            "message": "V'yy frg hc gur ubyb-cebwrpgbe sbe zhfvp."
+        },
+        {
+            "id": 19,
+            "timestamp": "2023-10-06T02:00:00Z",
+            "isEncoded": true,
+            "message": "Cresrpg, guvf jvyy or n avtug gb erzrzore!"
+        },
+        {
+            "id": 20,
+            "timestamp": "2023-10-06T03:00:00Z",
+            "isEncoded": true,
+            "message": "Qb lbh guvax gur jrngure qbzr jvyy ubyq guvf gvzr?"
+        },
+        {
+            "id": 21,
+            "timestamp": "2023-10-06T04:00:00Z",
+            "isEncoded": true,
+            "message": "Vg fubhyq, ratvarrevat ena qvntabfgvpf lrfgreqnl."
+        },
+        {
+            "id": 22,
+            "timestamp": "2023-10-06T05:00:00Z",
+            "isEncoded": true,
+            "message": "Terng, ynfg gvzr gur enva jnf n fhecevfr!"
+        },
+        {
+            "id": 23,
+            "timestamp": "2023-10-06T06:00:00Z",
+            "isEncoded": true,
+            "message": "Ng yrnfg vg znqr sbe fbzr shaal fgbevrf."
+        },
+        {
+            "id": 24,
+            "timestamp": "2023-10-06T07:00:00Z",
+            "isEncoded": true,
+            "message": "Gehr, ohg yrg'f xrrc gur tevyy qel gbavtug."
+        },
+        {
+            "id": 25,
+            "timestamp": "2023-10-06T08:00:00Z",
+            "isEncoded": true,
+            "message": "Nterrq, V'yy oevat na rkgen pnabcl whfg va pnfr."
+        },
+        {
+            "id": 26,
+            "timestamp": "2023-10-06T09:00:00Z",
+            "isEncoded": true,
+            "message": "Qvq nalbar vaivgr gur fpvrapr grnz?"
+        },
+        {
+            "id": 27,
+            "timestamp": "2023-10-06T10:00:00Z",
+            "isEncoded": true,
+            "message": "Lrf, gurl'er oevatvat gurve snzbhf arohyn fnynq."
+        },
+        {
+            "id": 28,
+            "timestamp": "2023-10-06T11:00:00Z",
+            "isEncoded": true,
+            "message": "Gung'f nyjnlf n uvg, pna'g jnvg gb gel vg ntnva."
+        },
+        {
+            "id": 29,
+            "timestamp": "2023-10-06T12:00:00Z",
+            "isEncoded": true,
+            "message": "Frr lbh fbba, fnsr geniryf ng Jnec 4!"
+        },
+        {
+            "id": 30,
+            "timestamp": "2023-10-06T13:00:00Z",
+            "isEncoded": true,
+            "message": "Gunaxf! V'yy fraq n zrffntr jura V'z va beovg."
+        },
+        {
+            "id": 31,
+            "timestamp": "2023-10-06T14:00:00Z",
+            "isEncoded": true,
+            "message": "Jr'yy xrrc na rlr bhg sbe lbhe fuhggyr."
+        },
+        {
+            "id": 32,
+            "timestamp": "2023-10-06T15:00:00Z",
+            "isEncoded": true,
+            "message": "Fubhyq V oevat nal tnzrf sbe nsgre qvaare?"
+        },
+        {
+            "id": 33,
+            "timestamp": "2023-10-06T16:00:00Z",
+            "isEncoded": true,
+            "message": "Qrsvavgryl, gur gevivn phorf jrer n ovt fhpprff ynfg gvzr."
+        },
+        {
+            "id": 34,
+            "timestamp": "2023-10-06T17:00:00Z",
+            "isEncoded": true,
+            "message": "V'yy cnpx gurz nybat jvgu gur oernq naq ubg fnhpr."
+        },
+        {
+            "id": 35,
+            "timestamp": "2023-10-06T18:00:00Z",
+            "isEncoded": true,
+            "message": "Qb lbh jnag zr gb uryc frg hc jura V neevir?"
+        },
+        {
+            "id": 36,
+            "timestamp": "2023-10-06T19:00:00Z",
+            "isEncoded": true,
+            "message": "Gung jbhyq or terng, jr pbhyq hfr na rkgen unaq."
+        },
+        {
+            "id": 37,
+            "timestamp": "2023-10-06T20:00:00Z",
+            "isEncoded": true,
+            "message": "V'yy or gurer rneyl, whfg yrg zr xabj jung arrqf qbvat."
+        },
+        {
+            "id": 38,
+            "timestamp": "2023-10-06T21:00:00Z",
+            "isEncoded": true,
+            "message": "Jr'yy arrq uryc neenatvat gur gnoyrf naq yvtugf."
+        },
+        {
+            "id": 39,
+            "timestamp": "2023-10-06T22:00:00Z",
+            "isEncoded": true,
+            "message": "Ab ceboyrz, V'yy trg fgnegrq nf fbba nf V ynaq."
+        },
+        {
+            "id": 40,
+            "timestamp": "2023-10-06T23:00:00Z",
+            "isEncoded": true,
+            "message": "Ner jr qbvat gur tebhc cubgb ntnva guvf lrne?"
+        },
+        {
+            "id": 41,
+            "timestamp": "2023-10-07T00:00:00Z",
+            "isEncoded": true,
+            "message": "Lrf, naq guvf gvzr jvgu rirelbar va havsbez."
+        },
+        {
+            "id": 42,
+            "timestamp": "2023-10-07T01:00:00Z",
+            "isEncoded": true,
+            "message": "V'yy znxr fher zl wnpxrg vf cerffrq naq ernql."
+        },
+        {
+            "id": 43,
+            "timestamp": "2023-10-07T03:00:00Z",
+            "isEncoded": true,
+            "message": "Qba'g sbetrg lbhe onqtr, ynfg lrne lbh nyzbfg qvq!"
+        },
+        {
+            "id": 44,
+            "timestamp": "2023-10-07T04:00:00Z",
+            "isEncoded": true,
+            "message": "Gunaxf sbe gur erzvaqre, V'yy qbhoyr-purpx zl trne."
+        },
+        {
+            "id": 45,
+            "timestamp": "2023-10-07T05:00:00Z",
+            "isEncoded": true,
+            "message": "Jvyy gurer or n qrffreg gnoyr guvf gvzr?"
+        },
+        {
+            "id": 46,
+            "timestamp": "2023-10-07T06:00:00Z",
+            "isEncoded": true,
+            "message": "Lrf, gur zrqvpny grnz vf oevatvat gurve snzbhf sehvg gnegf."
+        },
+        {
+            "id": 47,
+            "timestamp": "2023-10-07T07:00:00Z",
+            "isEncoded": true,
+            "message": "Gubfr ner nyjnlf tbar va zvahgrf!"
+        },
+        {
+            "id": 48,
+            "timestamp": "2023-10-07T08:00:00Z",
+            "isEncoded": true,
+            "message": "V'yy gel gb fnir lbh bar vs lbh'er yngr."
+        },
+        {
+            "id": 49,
+            "timestamp": "2023-10-07T09:00:00Z",
+            "isEncoded": true,
+            "message": "Zhpu nccerpvngrq, frr lbh nyy fbba!"
+        },
+        {
+            "id": 50,
+            "timestamp": "2023-10-07T02:00:00Z",
+            "isEncoded": true,
+            "message": "Pna'g jnvg gb pryroengr gbtrgure haqre gur Terraobavna fgnef!"
+        }
+    ]
+}
