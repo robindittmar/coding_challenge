@@ -102,8 +102,14 @@ reads something like
 - One issue I could potentially see with this is either creating hard dependencies,
 or making unnecessary copies of structs/values.
 
+==> I have ultimately decided to decode the messages after parsing is done, but keep the hard
+dependencies between the units. The parser is written to only parse this specific JSON structure,
+so I don't see any issues with that.
+
 ##### Should I abstract the message list further, or use GList* directly?
 
 - This is my first time utilizing `glib`, and I am not sure if I should use `GList*` directly.
 There is an argument to be made, that creating a small abstraction layer on top would look nicer,
 but using GList directly is not really verbose by itself.
+
+==> I have decided to keep `GList*` without any further abstractions
