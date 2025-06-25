@@ -1,5 +1,7 @@
 #include "message.h"
 
+#include <assert.h>
+
 /**
  * @brief Converts a single character using the ROT13 cipher
  *
@@ -32,7 +34,10 @@ char encode_rot13(char c) {
  */
 uint64_t message_parse_time(const gchar* timestamp) {
     GDateTime* dt = g_date_time_new_from_iso8601(timestamp, g_time_zone_new_utc());
-    return g_date_time_to_unix(dt);
+    uint64_t unix_timestamp = g_date_time_to_unix(dt);
+    g_date_time_unref(dt);
+
+    return unix_timestamp;
 }
 
 /**
@@ -43,10 +48,8 @@ uint64_t message_parse_time(const gchar* timestamp) {
  * @return New message_t, caller takes ownership
  */
 message_t* message_alloc() {
-    message_t* msg = malloc(sizeof(message_t));
-    if (!msg) {
-        abort();
-    }
+    message_t* msg = g_malloc(sizeof(message_t));
+    assert(msg);
 
     message_init(msg);
     return msg;
@@ -59,7 +62,7 @@ message_t* message_alloc() {
  */
 void message_free(message_t* msg) {
     message_cleanup(msg);
-    free(msg);
+    g_free(msg);
 }
 
 /**

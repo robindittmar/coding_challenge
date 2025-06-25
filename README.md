@@ -113,3 +113,56 @@ There is an argument to be made, that creating a small abstraction layer on top 
 but using GList directly is not really verbose by itself.
 
 ==> I have decided to keep `GList*` without any further abstractions
+
+
+#### 2025-06-27
+
+I decided to add some error handling, which is never pretty in vanilla C.
+Since imo there are various ways to handle errors properly, I have somewhat oriented
+on the way `gvm_json_pull_expand_container(...)` does it.
+
+Additionally, I have decided to run `valgrind` to find any memory leaks, and it seems
+that I have made a mistake in using the `gvm-libs` json utility.
+The memory in question is allocated as a result of calling `gvm_json_pull_parser_next`,
+but I don't see any cleanup function that goes along with it (and I am already cleaning up the
+parser and event)
+
+That being said, I might just be missing something and I am going to add the valgrind output here
+for completness's sake.
+
+```
+$ valgrind --tool=memcheck --leak-check=full ./greenbone_coding_challenge
+
+==90005== 63 bytes in 6 blocks are definitely lost in loss record 111 of 247
+==90005==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==90005==    by 0x49BA355: ??? (in /usr/lib/x86_64-linux-gnu/libcjson.so.1.7.17)
+==90005==    by 0x49BBCD6: cJSON_ParseWithLengthOpts (in /usr/lib/x86_64-linux-gnu/libcjson.so.1.7.17)
+==90005==    by 0x49DD056: gvm_json_pull_parse_buffered (jsonpull.c:217)
+==90005==    by 0x49DD40E: gvm_json_pull_parse_string (jsonpull.c:320)
+==90005==    by 0x49DD813: gvm_json_pull_parse_key (jsonpull.c:439)
+==90005==    by 0x49DE21A: gvm_json_pull_parser_next (jsonpull.c:723)
+==90005==    by 0x109BF3: read_messages_json_file (parse.c:23)
+==90005==    by 0x10965F: main (main.c:28)
+==90005== 
+==90005== 125 bytes in 5 blocks are definitely lost in loss record 231 of 247
+==90005==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==90005==    by 0x49BA355: ??? (in /usr/lib/x86_64-linux-gnu/libcjson.so.1.7.17)
+==90005==    by 0x49BBCD6: cJSON_ParseWithLengthOpts (in /usr/lib/x86_64-linux-gnu/libcjson.so.1.7.17)
+==90005==    by 0x49DD056: gvm_json_pull_parse_buffered (jsonpull.c:217)
+==90005==    by 0x49DD40E: gvm_json_pull_parse_string (jsonpull.c:320)
+==90005==    by 0x49DDCDF: gvm_json_pull_parse_value (jsonpull.c:577)
+==90005==    by 0x49DE23D: gvm_json_pull_parser_next (jsonpull.c:729)
+==90005==    by 0x109BF3: read_messages_json_file (parse.c:23)
+==90005==    by 0x10965F: main (main.c:28)
+==90005== 
+==90005== 1,200 bytes in 50 blocks are definitely lost in loss record 245 of 247
+==90005==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==90005==    by 0x48D27B1: g_malloc0 (in /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.8000.0)
+==90005==    by 0x49DCBC4: gvm_json_pull_path_elem_new (jsonpull.c:26)
+==90005==    by 0x49DDF25: gvm_json_pull_parse_value (jsonpull.c:630)
+==90005==    by 0x49DE23D: gvm_json_pull_parser_next (jsonpull.c:729)
+==90005==    by 0x109D43: json_read_messages_array (parse.c:48)
+==90005==    by 0x109C49: read_messages_json_file (parse.c:28)
+==90005==    by 0x10965F: main (main.c:28)
+```
+

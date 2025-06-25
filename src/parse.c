@@ -23,10 +23,9 @@ void read_messages_json_file(FILE* fp, GList** messages, gchar** error_message) 
         gvm_json_pull_parser_next(&parser, &event);
 
         gchar* stringPath = gvm_json_path_to_string(event.path);
-
         if (strcmp(stringPath, "$['messages']") == 0 && event.type == GVM_JSON_PULL_EVENT_ARRAY_START) {
             json_read_messages_array(&parser, &event, messages, error_message);
-            if (error_message && *error_message != NULL) {
+            if (error_message && *error_message) {
                 g_free(stringPath);
                 break;
             }
@@ -35,7 +34,7 @@ void read_messages_json_file(FILE* fp, GList** messages, gchar** error_message) 
         g_free(stringPath);
     }
 
-    if (event.error_message != NULL && error_message != NULL) {
+    if (event.error_message && error_message && *error_message == NULL) {
         *error_message = g_strdup(event.error_message);
     }
 
@@ -51,7 +50,7 @@ void json_read_messages_array(gvm_json_pull_parser_t* parser, gvm_json_pull_even
             message_t* cur_msg = message_alloc();
 
             json_read_message_object(parser, cur_msg, error_message);
-            if (error_message && *error_message != NULL) {
+            if (error_message && *error_message) {
                 message_free(cur_msg);
                 return;
             }
@@ -60,7 +59,7 @@ void json_read_messages_array(gvm_json_pull_parser_t* parser, gvm_json_pull_even
         }
     }
 
-    if (event->error_message != NULL && error_message != NULL) {
+    if (event->error_message && error_message) {
         *error_message = g_strdup(event->error_message);
     }
 }
