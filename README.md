@@ -30,7 +30,7 @@ The output of deciphering the encoded text is perfectly readable
 Yes, please find my source code and thought process in this repository :)
 
 
-### Prerequisites
+## Prerequisites
 
 To build this project, `glib`, `cJSON` and [gvm-libs](https://github.com/greenbone/gvm-libs) must be installed.
 
@@ -43,7 +43,7 @@ along with
 - `cmake 3.31.6`
 
 
-### Thoughts/Log
+## Thoughts/Log
 
 I've decided to write down my thoughts everytime I sit down to work on this.
 The idea is that if you are reviewing this, you can get a deeper insight into when/how I come
