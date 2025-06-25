@@ -50,35 +50,35 @@ The idea is that if you are reviewing this, you can get a deeper insight into wh
 up with the solutions I came up with.
 
 #### 2025-06-23
-The first thing I did was try to understand which cypher is being used
+The first thing I did was try to understand which cipher is being used
 to encode/decode the messages.
-I realized that the sentences look correct in its format (First letter is upper case and the punctuation is correct),
+I realized that the sentences look correct in its format (the first letter is upper case and the punctuation is correct),
 and the very first two sentences are actually decoded correctly.
 
-My initial idea was that the setting of the task (travelling through space **and time**) had to do with it.
+My initial idea was that the setting of the task (traveling through space **and time**) had to do with it.
 Maybe the parser was skipping characters due to some memory corruption/off by one error or something along those lines.
-If that was the case though, it would be highly unlikely that the punctuation would stay intact.
-In addition to that, I do not have any input JSON file, so it is impossible (or at least extremely hard) to derive some weird memory corruption
-behavior from just the output data.
+If that was the case, though, it would be highly unlikely that the punctuation would stay intact.
+In addition to that, I do not have any input JSON file, so it is impossible (or at least extremely hard) to derive some
+weird memory corruption behavior from just the output data.
 
 After some more inspection I realized that the second word `lbh'yy` contained a language construct
 that we use in English quite often, as in for example: `you'll`, `we've`, `I'd`.
-Also, the single uppercase `V` letter was a bit suspicious, so I thought of the simplest cypher known to mankind: **ROT13**.
+Also, the single uppercase `V` letter was a bit suspicious, so I thought of the simplest cipher known to people: **ROT13**.
 
-So I just pasted the encoded text to rot13.com and voilá: We can read the text in plain english :)
+So I just pasted the encoded text to rot13.com and voilà: We can read the text in plain English:)
 
 #### 2025-06-24
 Today I received the `messages.json` file, which makes it a lot clearer what
 the exercise is about in detail. I feel confident now that I am able
-to answer the questions of the task and write the code to parse & decode said JSON file
+to answer the questions of the task and write the code to parse and decode the provided JSON file
 (especially since I already figured out the encoding is ROT13)
 
 My idea currently is to
 1. Parse the JSON file using `gvm-libs`
-2. Transform message objects into custom struct
+2. Transform message objects into a custom struct
 3. Sort messages using the timestamp (id as fallback, if timestamps happen to be equal). Looking to use `qsort()`
 4. Decode messages that have `"isEncoded": true` using a custom ROT13 encoder
-(no explicit decoder necessary, as ROT13 is "symmetrical", just like XORing for example: if you run the operation twice you'll receive back your original input)
+(no explicit decoder necessary, as ROT13 is "symmetrical", just like XORing for example: if you run the operation twice, you'll receive back your original input)
 5. Iterate over message objects and output decoded messages
 
 #### 2025-06-26
@@ -99,14 +99,14 @@ reads something like
   1. parse_json()
   2. process_messages()
   3. print_messages()
-- One issue I could potentially see with this is either creating hard dependencies,
+- One issue I could potentially see with this is either creating hard dependencies
 or making unnecessary copies of structs/values.
 
-==> I have ultimately decided to decode the messages after parsing is done, but keep the hard
+==> I have ultimately decided to decode the messages after parsing is done but keep the hard
 dependencies between the units. The parser is written to only parse this specific JSON structure,
 so I don't see any issues with that.
 
-##### Should I abstract the message list further, or use GList* directly?
+##### Should I abstract the message list further or use GList* directly?
 
 - This is my first time utilizing `glib`, and I am not sure if I should use `GList*` directly.
 There is an argument to be made, that creating a small abstraction layer on top would look nicer,
