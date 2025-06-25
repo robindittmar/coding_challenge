@@ -10,5 +10,9 @@ pkg_check_modules(LIBGVM_UTIL REQUIRED libgvm_util>=22.17)
 
 add_executable(greenbone_coding_challenge src/main.c)
 
+target_include_directories(greenbone_coding_challenge PRIVATE
+    ${GLIB_INCLUDE_DIRS}
+    ${GVM_BASE_INCLUDE_DIRS}
+    ${GVM_UTIL_INCLUDE_DIRS})
 target_link_libraries(greenbone_coding_challenge PkgConfig::deps gvm_base gvm_util)
 
