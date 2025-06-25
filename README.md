@@ -99,6 +99,8 @@ reads something like
   1. parse_json()
   2. process_messages()
   3. print_messages()
+- One issue I could potentially see with this is either creating hard dependencies,
+or making unnecessary copies of structs/values.
 
 ##### Should I abstract the message list further, or use GList* directly?
 

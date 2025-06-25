@@ -143,7 +143,7 @@ void message_set_is_encoded(message_t* msg, gboolean is_encoded) {
  *
  * @param[in]  msg  The message_t to use
  */
-void message_finalize(message_t* msg) {
+void message_decode(message_t* msg) {
     if (msg->is_encoded) {
         gsize length = msg->message->len;
         GString* decoded = g_string_sized_new(length);
@@ -154,6 +154,7 @@ void message_finalize(message_t* msg) {
 
         g_string_free(msg->message, TRUE);
         msg->message = decoded;
+        msg->is_encoded = FALSE;
     }
 }
 

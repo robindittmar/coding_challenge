@@ -11,7 +11,9 @@ pkg_check_modules(GVM_UTIL REQUIRED libgvm_util>=22.17)
 
 add_executable(greenbone_coding_challenge src/main.c
         src/message.h
-        src/message.c)
+        src/message.c
+        src/parse.h
+        src/parse.c)
 
 target_include_directories(greenbone_coding_challenge PRIVATE
     ${GLIB_INCLUDE_DIRS}
