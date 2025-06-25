@@ -168,10 +168,6 @@ gint message_compare_sort(gconstpointer a, gconstpointer b) {
     const message_t* msg_a = a;
     const message_t* msg_b = b;
 
-    if (msg_a == NULL || msg_b == NULL) {
-        return 0;
-    }
-
     // Sort by timestamp
     if (msg_a->unix_timestamp > msg_b->unix_timestamp) {
         return 1;
