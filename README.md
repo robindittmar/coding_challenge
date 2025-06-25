@@ -1,7 +1,7 @@
 # Greenbone Coding Challenge
 
-This repository contains my progress and results of the
-coding challenge, which is part of the Greenbone application process.
+This repository contains my result of the coding challenge, which is part of
+the Greenbone application process.
 
 ## Answering the questions
 
