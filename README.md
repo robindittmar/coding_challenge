@@ -124,11 +124,11 @@ on the way `gvm_json_pull_expand_container(...)` does it.
 Additionally, I have decided to run `valgrind` to find any memory leaks, and it seems
 that I have made a mistake in using the `gvm-libs` json utility.
 The memory in question is allocated as a result of calling `gvm_json_pull_parser_next`,
-but I don't see any cleanup function that goes along with it (and I am already cleaning up the
-parser and event)
+but I don't see any more cleanup that I would need to take care of.
 
-That being said, I might just be missing something and I am going to add the valgrind output here
-for completness's sake.
+That being said, I might just be missing something, and I am not sure if I will find the time to find and fix
+these memory leaks.
+I am going to add the valgrind output here for completeness's sake.
 
 ```
 $ valgrind --tool=memcheck --leak-check=full ./greenbone_coding_challenge
