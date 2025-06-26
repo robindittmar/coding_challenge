@@ -7,6 +7,7 @@
 #include "message.h"
 #include "parse.h"
 
+
 void parse_message_callback(void* user_data, uint64_t id, const gchar* timestamp, gboolean is_encoded, const gchar* message) {
     GList** messages = user_data;
 
