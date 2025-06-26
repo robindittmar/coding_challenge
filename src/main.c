@@ -53,11 +53,11 @@ int main(void) {
         return -1;
     }
     parse_context_cleanup(&ctx);
+    fclose(fp);
 
     g_list_foreach(messages, print_and_free_message, NULL);
     g_list_free(messages);
 
-    fclose(fp);
     return 0;
 }
 
