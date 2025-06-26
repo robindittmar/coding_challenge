@@ -10,26 +10,26 @@ the Greenbone application process.
 Yes! The decoder is either ignoring the `"isEncoded"` flag, or missing the **ROT13**
 decoding step altogether.
 
-((Technically, the program is also only iterating over the first
+(Technically, the program is also only iterating over the first
 five messages :D)
 
 
 ##### How do you prove it?
 
-The first piece of proof is comparing the output of the program with the contents of
-`messages.json`. The first five entries of the `[messages][i][message]` object from the JSON
+The first piece of proof, for that the decoder is not decoding anything, is comparing the output of the program with
+the contents of `messages.json`. The first five entries of the `[messages][i][message]` object from the JSON
 are identical to the output shown in the task description PDF.
 
 The second piece of proof is running the ROT13 cipher on the outputted text, either
-manually or utilizing tools like [rot13.com](https://rot13.com/)
+manually or using tools like [rot13.com](https://rot13.com/)
 
 The output of deciphering the encoded text is perfectly readable
 (as long as you know English, of course)
 
-There were some hints pointing towards a "simple" encoding like ROT13, as:
+There were some hints pointing towards a simple encoding like ROT13, as:
 - Natural punctuation
 - Letter and spaces distributions match those of natural language
-- (find more detailed thoughts in "Thoughts" section)
+- (find more detailed thoughts in "Thoughts/Log" section)
 
 
 ##### Can you write a program that reads the encoded messages in the JSON file, decodes and print them to stdout?
@@ -72,7 +72,7 @@ After some more inspection I realized that the second word `lbh'yy` contained a 
 that we use in English quite often, as in for example: `you'll`, `we've`, `I'd`.
 Also, the single uppercase `V` letter was a bit suspicious, so I thought of the simplest cipher known to people: **ROT13**.
 
-So I just pasted the encoded text to rot13.com and voilà: We can read the text in plain English:)
+So I just pasted the encoded text to rot13.com and voilà: We can read the text in plain English :)
 
 #### 2025-06-24
 Today I received the `messages.json` file, which makes it a lot clearer what
@@ -109,9 +109,11 @@ reads something like
 - One issue I could potentially see with this is either creating hard dependencies
 or making unnecessary copies of structs/values.
 
-==> I have ultimately decided to decode the messages after parsing is done but keep the hard
-dependencies between the units. The parser is written to only parse this specific JSON structure,
-so I don't see any issues with that.
+==> 2025-06-26: I have ultimately decided to decode the messages while parsing, BUT in a callback
+that lives in the main code unit. This is in my opinion the best out of both worlds.
+The `message_t` object can omit the "is_encoded" flag (since only decoded messages are stored), and
+the parser does not need to know about `message_t` or any specific encoding (in other words, thinking
+about it a bit differently, the cipher can be "injected" via the callback)
 
 ##### Should I abstract the message list further or use GList* directly?
 
@@ -119,7 +121,8 @@ so I don't see any issues with that.
 There is an argument to be made, that creating a small abstraction layer on top would look nicer,
 but using GList directly is not really verbose by itself.
 
-==> I have decided to keep `GList*` without any further abstractions
+==> 2025-06-26: I have decided to keep `GList*` without any further abstractions. But, using the
+callback idiom in the parser, the parser does not need know about any list :)
 
 
 #### 2025-06-26
@@ -179,3 +182,8 @@ The message_t was doing too much business logic, in my opinion, and I wanted to 
 
 In addition, the parser does not know about `message_t` anymore, but I rather introduced a
 `parse_context_t`, and a `parse_message_callback_t`. Main is now fully responsible for maintaining the message `GList`
+
+As a last note, I decided to not bother with the memory leaks. The way they are created makes me believe it
+**could** be a bug in `gvm-libs` itself, or I am simply using it wrong. That being said, I don't think this detail will
+make or break this coding challenge (I hope), and you probably know memory leaks can be a hassle to locate.
+
