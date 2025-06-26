@@ -40,11 +40,9 @@ void json_read_messages_array(parse_context_t* ctx);
 void json_read_message_object(parse_context_t* ctx);
 
 /**
- * @brief Parses the 'messages' property of the provided JSON filestream, and writes result to parameter messages
+ * @brief Parses the 'messages' property of the provided context, and calls the context's callback for every message
  *
- * @param[in]   fp  Open/valid filestream pointing to JSON file
- * @param[out]  messages  The list of parsed messages
- * @param[out]  error_message Error message from parsing
+ * @param[in]   ctx  The parsing context
  */
 void parse_message_json_file(parse_context_t* ctx) {
     while (ctx->event.error_message == NULL && ctx->event.type != GVM_JSON_PULL_EVENT_EOF) {
