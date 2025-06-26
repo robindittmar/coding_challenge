@@ -9,8 +9,7 @@ typedef struct message {
     uint64_t id;
     uint64_t unix_timestamp;
     GString* timestamp;
-    GString* message;
-    gboolean is_encoded;
+    GString* content;
 } message_t;
 
 message_t* message_alloc();
@@ -21,10 +20,7 @@ void message_cleanup(message_t* msg);
 
 void message_set_id(message_t *msg, uint64_t id);
 void message_set_timestamp(message_t* msg, const gchar* timestamp);
-void message_set_message(message_t* msg, const gchar* message);
-void message_set_is_encoded(message_t* msg, gboolean is_encoded);
-
-void message_decode(message_t* msg);
+void message_set_content(message_t* msg, const gchar* content);
 
 
 gint message_compare_sort(gconstpointer a, gconstpointer b);

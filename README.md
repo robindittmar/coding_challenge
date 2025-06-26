@@ -8,21 +8,28 @@ the Greenbone application process.
 ##### Can you figure out what is wrong with your decoder?
 
 Yes! The decoder is either ignoring the `"isEncoded"` flag, or missing the **ROT13**
-decoding step altogether. Technically, is it also only iterating over the first
-five messages :)
+decoding step altogether.
+
+((Technically, the program is also only iterating over the first
+five messages :D)
 
 
 ##### How do you prove it?
 
 The first piece of proof is comparing the output of the program with the contents of
-`messages.json`. The first five entries of the `[messages][i][message]` object
-are identical to the output.
+`messages.json`. The first five entries of the `[messages][i][message]` object from the JSON
+are identical to the output shown in the task description PDF.
 
 The second piece of proof is running the ROT13 cipher on the outputted text, either
 manually or utilizing tools like [rot13.com](https://rot13.com/)
 
 The output of deciphering the encoded text is perfectly readable
 (as long as you know English, of course)
+
+There were some hints pointing towards a "simple" encoding like ROT13, as:
+- Natural punctuation
+- Letter and spaces distributions match those of natural language
+- (find more detailed thoughts in "Thoughts" section)
 
 
 ##### Can you write a program that reads the encoded messages in the JSON file, decodes and print them to stdout?
@@ -81,7 +88,7 @@ My idea currently is to
 (no explicit decoder necessary, as ROT13 is "symmetrical", just like XORing for example: if you run the operation twice, you'll receive back your original input)
 5. Iterate over message objects and output decoded messages
 
-#### 2025-06-26
+#### 2025-06-25
 I managed to understand the usage of the `jsonpull` util from `gvm-libs` and also managed to
 get a running example of the exercise.
 I have also decided to answer the questions asked in the document, for completeness’s sake. (Even though I believe the
@@ -115,7 +122,7 @@ but using GList directly is not really verbose by itself.
 ==> I have decided to keep `GList*` without any further abstractions
 
 
-#### 2025-06-27
+#### 2025-06-26
 
 I decided to add some error handling, which is never pretty in vanilla C.
 Since imo there are various ways to handle errors properly, I have somewhat oriented
@@ -133,36 +140,42 @@ I am going to add the valgrind output here for completeness's sake.
 ```
 $ valgrind --tool=memcheck --leak-check=full ./greenbone_coding_challenge
 
-==90005== 63 bytes in 6 blocks are definitely lost in loss record 111 of 247
-==90005==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==90005==    by 0x49BA355: ??? (in /usr/lib/x86_64-linux-gnu/libcjson.so.1.7.17)
-==90005==    by 0x49BBCD6: cJSON_ParseWithLengthOpts (in /usr/lib/x86_64-linux-gnu/libcjson.so.1.7.17)
-==90005==    by 0x49DD056: gvm_json_pull_parse_buffered (jsonpull.c:217)
-==90005==    by 0x49DD40E: gvm_json_pull_parse_string (jsonpull.c:320)
-==90005==    by 0x49DD813: gvm_json_pull_parse_key (jsonpull.c:439)
-==90005==    by 0x49DE21A: gvm_json_pull_parser_next (jsonpull.c:723)
-==90005==    by 0x109BF3: read_messages_json_file (parse.c:23)
-==90005==    by 0x10965F: main (main.c:28)
-==90005== 
-==90005== 125 bytes in 5 blocks are definitely lost in loss record 231 of 247
-==90005==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==90005==    by 0x49BA355: ??? (in /usr/lib/x86_64-linux-gnu/libcjson.so.1.7.17)
-==90005==    by 0x49BBCD6: cJSON_ParseWithLengthOpts (in /usr/lib/x86_64-linux-gnu/libcjson.so.1.7.17)
-==90005==    by 0x49DD056: gvm_json_pull_parse_buffered (jsonpull.c:217)
-==90005==    by 0x49DD40E: gvm_json_pull_parse_string (jsonpull.c:320)
-==90005==    by 0x49DDCDF: gvm_json_pull_parse_value (jsonpull.c:577)
-==90005==    by 0x49DE23D: gvm_json_pull_parser_next (jsonpull.c:729)
-==90005==    by 0x109BF3: read_messages_json_file (parse.c:23)
-==90005==    by 0x10965F: main (main.c:28)
-==90005== 
-==90005== 1,200 bytes in 50 blocks are definitely lost in loss record 245 of 247
-==90005==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==90005==    by 0x48D27B1: g_malloc0 (in /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.8000.0)
-==90005==    by 0x49DCBC4: gvm_json_pull_path_elem_new (jsonpull.c:26)
-==90005==    by 0x49DDF25: gvm_json_pull_parse_value (jsonpull.c:630)
-==90005==    by 0x49DE23D: gvm_json_pull_parser_next (jsonpull.c:729)
-==90005==    by 0x109D43: json_read_messages_array (parse.c:48)
-==90005==    by 0x109C49: read_messages_json_file (parse.c:28)
-==90005==    by 0x10965F: main (main.c:28)
+==12987== 63 bytes in 6 blocks are definitely lost in loss record 111 of 247
+==12987==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==12987==    by 0x49BA355: ??? (in /usr/lib/x86_64-linux-gnu/libcjson.so.1.7.17)
+==12987==    by 0x49BBCD6: cJSON_ParseWithLengthOpts (in /usr/lib/x86_64-linux-gnu/libcjson.so.1.7.17)
+==12987==    by 0x49DD056: gvm_json_pull_parse_buffered (jsonpull.c:217)
+==12987==    by 0x49DD40E: gvm_json_pull_parse_string (jsonpull.c:320)
+==12987==    by 0x49DD813: gvm_json_pull_parse_key (jsonpull.c:439)
+==12987==    by 0x49DE21A: gvm_json_pull_parser_next (jsonpull.c:723)
+==12987==    by 0x109B98: parse_message_json_file (parse.c:50)
+==12987==    by 0x10974A: main (main.c:47)
+==12987== 
+==12987== 125 bytes in 5 blocks are definitely lost in loss record 231 of 247
+==12987==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==12987==    by 0x49BA355: ??? (in /usr/lib/x86_64-linux-gnu/libcjson.so.1.7.17)
+==12987==    by 0x49BBCD6: cJSON_ParseWithLengthOpts (in /usr/lib/x86_64-linux-gnu/libcjson.so.1.7.17)
+==12987==    by 0x49DD056: gvm_json_pull_parse_buffered (jsonpull.c:217)
+==12987==    by 0x49DD40E: gvm_json_pull_parse_string (jsonpull.c:320)
+==12987==    by 0x49DDCDF: gvm_json_pull_parse_value (jsonpull.c:577)
+==12987==    by 0x49DE23D: gvm_json_pull_parser_next (jsonpull.c:729)
+==12987==    by 0x109B98: parse_message_json_file (parse.c:50)
+==12987==    by 0x10974A: main (main.c:47)
+==12987== 
+==12987== 1,200 bytes in 50 blocks are definitely lost in loss record 245 of 247
+==12987==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==12987==    by 0x48D27B1: g_malloc0 (in /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.8000.0)
+==12987==    by 0x49DCBC4: gvm_json_pull_path_elem_new (jsonpull.c:26)
+==12987==    by 0x49DDF25: gvm_json_pull_parse_value (jsonpull.c:630)
+==12987==    by 0x49DE23D: gvm_json_pull_parser_next (jsonpull.c:729)
+==12987==    by 0x109C94: json_read_messages_array (parse.c:71)
+==12987==    by 0x109BDE: parse_message_json_file (parse.c:54)
+==12987==    by 0x10974A: main (main.c:47)
 ```
 
+---
+After thinking about my solution for half a day, I have decided to refactor some parts of the code.
+The message_t was doing too much business logic, in my opinion, and I wanted to move more of the logic to main.
+
+In addition, the parser does not know about `message_t` anymore, but I rather introduced a
+`parse_context_t`, and a `parse_message_callback_t`. Main is now fully responsible for maintaining the message `GList`
