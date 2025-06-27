@@ -1,7 +1,7 @@
-# Greenbone Coding Challenge
+# Coding Challenge
 
-This repository contains my result of the coding challenge, which is part of
-the Greenbone application process.
+This repository contains my result of a coding challenge, which is part of
+an application process.
 
 ## Answering the questions
 
@@ -141,7 +141,7 @@ these memory leaks.
 I am going to add the valgrind output here for completeness's sake.
 
 ```
-$ valgrind --tool=memcheck --leak-check=full ./greenbone_coding_challenge
+$ valgrind --tool=memcheck --leak-check=full ./coding_challenge
 
 ==12987== 63 bytes in 6 blocks are definitely lost in loss record 111 of 247
 ==12987==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
