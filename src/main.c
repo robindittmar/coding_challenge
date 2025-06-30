@@ -33,10 +33,17 @@ void print_and_free_message(void* data, void* user_data) {
     message_free(data);
 }
 
-int main(void) {
-    FILE* fp = fopen("messages.json", "r");
+int main(int argc, char** argv) {
+    gchar* json_filepath;
+    if (argc > 1) {
+        json_filepath = argv[1];
+    } else {
+        json_filepath = "messages.json";
+    }
+
+    FILE* fp = fopen(json_filepath, "r");
     if (!fp) {
-        fputs("Could not open file 'message.json'\n", stderr);
+        fprintf(stderr, "Could not open file '%s'\n", json_filepath);
         return -1;
     }
 
