@@ -100,8 +100,8 @@ void message_set_content(message_t* msg, const gchar* content) {
  * @param[in]  b  message_t b
  */
 gint message_compare_sort(gconstpointer a, gconstpointer b) {
-    const message_t* msg_a = a;
-    const message_t* msg_b = b;
+    const message_t* msg_a = *(message_t**)a;
+    const message_t* msg_b = *(message_t**)b;
 
     // Sort by timestamp
     if (msg_a->unix_timestamp > msg_b->unix_timestamp) {

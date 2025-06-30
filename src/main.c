@@ -9,7 +9,7 @@
 
 
 void parse_message_callback(void* user_data, uint64_t id, const gchar* timestamp, gboolean is_encoded, const gchar* message) {
-    GList** messages = user_data;
+    GPtrArray* messages = user_data;
 
     message_t* msg = message_alloc();
     message_set_id(msg, id);
@@ -23,14 +23,12 @@ void parse_message_callback(void* user_data, uint64_t id, const gchar* timestamp
         message_set_content(msg, message);
     }
 
-    *messages = g_list_insert_sorted(*messages, msg, message_compare_sort);
+    g_ptr_array_add(messages, msg);
 }
 
-void print_and_free_message(void* data, void* user_data) {
+void print_message(void* data, void* user_data) {
     message_t* msg = data;
     printf("%s: %s\n", msg->timestamp->str, msg->content->str);
-
-    message_free(data);
 }
 
 int main(int argc, char** argv) {
@@ -47,23 +45,24 @@ int main(int argc, char** argv) {
         return -1;
     }
 
-    GList* messages = NULL;
+    GPtrArray* messages = g_ptr_array_new_with_free_func((GDestroyNotify)message_free);
 
     parse_context_t ctx;
-    parse_context_init(&ctx, fp, &parse_message_callback, &messages);
+    parse_context_init(&ctx, fp, &parse_message_callback, messages);
 
     parse_message_json_file(&ctx);
     if (ctx.error_message) {
         fprintf(stderr, "Error parsing JSON file: %s\n", ctx.error_message);
-        g_list_free(messages);
+        g_ptr_array_free(messages, TRUE);
         parse_context_cleanup(&ctx);
         return -1;
     }
     parse_context_cleanup(&ctx);
     fclose(fp);
 
-    g_list_foreach(messages, print_and_free_message, NULL);
-    g_list_free(messages);
+    g_ptr_array_sort(messages, message_compare_sort);
+    g_ptr_array_foreach(messages, print_message, NULL);
+    g_ptr_array_free(messages, TRUE);
 
     return 0;
 }
