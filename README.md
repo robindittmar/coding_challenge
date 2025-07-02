@@ -187,3 +187,8 @@ As a last note, I decided to not bother with the memory leaks. The way they are 
 **could** be a bug in `gvm-libs` itself, or I am simply using it wrong. That being said, I don't think this detail will
 make or break this coding challenge (I hope), and you probably know memory leaks can be a hassle to locate.
 
+#### 2025-07-02
+
+It bothered me that there was memory leaking in my program, and so I decided to investigate the possible causes further.
+I have found some issues in the `gvm-libs` json_pull utility and opened an
+[Issue on GitHub](https://github.com/greenbone/gvm-libs/issues/935), which should fix the leaks.
